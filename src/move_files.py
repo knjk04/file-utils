@@ -1,6 +1,7 @@
 import os
 import sys
-from os import listdir
+from os import listdir # TODO: why do we need to import os twice?
+from pathlib import Path
 
 from src.create_dir import create_numbered_dirs, get_parent_dir
 
@@ -16,18 +17,21 @@ def create_new_dirs(parent_dir: str, number_of_dirs: int):
     return create_numbered_dirs(parent_dir, start, number_of_dirs)
 
 
-def move_files(path_to_files: [str], destinations: [str]):
+def move_files(path_to_files: [str], destinations: [str], new_file_name: str):
     """
     Assumes that every file in the parameter files is an absolute path to a file.
     Also assumes that both parameters are non-empty lists
+    new_file_name does not change the file extension
     """
     for index, source_path in enumerate(path_to_files):
-        file_name = os.path.basename(source_path)
-        print('File name ' + file_name)
-        dest = os.path.join(destinations[index], file_name)
+        original_file_name = os.path.basename(source_path)
+        file_extension = Path(original_file_name).suffix
+        # don't want to set this expression to new_file_name because it will overwrite the value and affect subsequent
+        # iterations of the loop
+        new_file_name2 = new_file_name + file_extension
+        dest = os.path.join(destinations[index], new_file_name2)
         os.rename(source_path, dest)
-        print(f'Moved {file_name}...')
-
+        print(f'Moved {original_file_name}...')
 
 
 def main():
@@ -42,7 +46,10 @@ def main():
         print(f'Could not create new directories. Perhaps those directories already exist in {parent_dir}?')
         sys.exit()
 
-    move_files(files, new_dirs)
+    print('What do you want to to use for the new file names ?', sep='')
+    file_name = input()
+
+    move_files(files, new_dirs, file_name)
 
 
 if __name__ == '__main__':
