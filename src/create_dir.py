@@ -18,31 +18,39 @@ def create_numbered_dirs(parent_dir, start, end):
 
 
 def print_error(error_message):
-    usage = 'Usage: python create_dir.py [absolute-path-to-parent-directory] [start-digit] [end-digit]'
     print(f'Error: {error_message}')
-    print(usage)
+
+
+def get_parent_dir():
+    print('Enter an absolute path to the parent directory: ', sep='')
+    parent_dir = input()
+    if not os.path.isdir(parent_dir):
+        error = f'not a path to a folder on your system: {parent_dir}'
+        print_error(error)
+        sys.exit()
+    return parent_dir
+
+
+def get_digit_from_user(prompt):
+    print(prompt)
+    entered = input()
+    digit = int(entered) if entered.isdigit() else None
+    if digit is None:
+        print_error('not a digit: ' + entered)
+        sys.exit()
+    return digit
 
 
 def main():
-    parent_dir = sys.argv[1]
-    if not os.path.isdir(parent_dir):
-        error = f'not a path to a folder on your system: {sys.argv[1]}'
-        print_error(error)
-        sys.exit()
-
-    start = int(sys.argv[2]) if sys.argv[2].isdigit() else None
-    end = int((sys.argv[3])) if sys.argv[3].isdigit() else None
-    if start is None or end is None:
-        error = 'we expected digits, but you passed in something else'
-        print_error(error)
-        sys.exit()
-    elif start > end:
+    start = get_digit_from_user('Enter in the starting digit: ')
+    end = get_digit_from_user('Enter in the end digit: ')
+    if start > end:
         error = f'The starting number should be less than the end. ' \
                 f'You passed in {start} for the start and {end} for the end'
         print_error(error)
         sys.exit()
 
-    create_numbered_dirs(parent_dir, start, end)
+    create_numbered_dirs(get_parent_dir(), start, end)
 
 
 if __name__ == '__main__':
