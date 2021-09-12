@@ -8,13 +8,16 @@ def create_numbered_dirs(parent_dir: str, start: int, end: int):
     Creates folders from start to end (both inclusive) at the specified parent directory (absolute path).
     If a directory to add already exists, it skips adding it and moves on to the next directory to add
     """
+    new_dirs = []
     for i in range(start, end + 1):
         new_dir = os.path.join(parent_dir, str(i))
         try:
             Path(new_dir).mkdir()
+            new_dirs.append(new_dir)
             print(f'Added directory {new_dir} ...')
         except FileExistsError:
             print(f'Cannot add directory {new_dir} as it already exists. Skipping...')
+    return new_dirs
 
 
 def print_error(error_message: str):
