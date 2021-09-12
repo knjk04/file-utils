@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 
-def create_numbered_dirs(parent_dir, start, end):
+def create_numbered_dirs(parent_dir: str, start: int, end: int):
     """
     Creates folders from start to end (both inclusive) at the specified parent directory (absolute path).
     If a directory to add already exists, it skips adding it and moves on to the next directory to add
@@ -17,7 +17,7 @@ def create_numbered_dirs(parent_dir, start, end):
             print(f'Cannot add directory {new_dir} as it already exists. Skipping...')
 
 
-def print_error(error_message):
+def print_error(error_message: str):
     print(f'Error: {error_message}')
 
 
@@ -31,7 +31,7 @@ def get_parent_dir():
     return parent_dir
 
 
-def get_digit_from_user(prompt):
+def get_digit_from_user(prompt: str):
     print(prompt)
     entered = input()
     digit = int(entered) if entered.isdigit() else None
