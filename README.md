@@ -7,7 +7,7 @@ This has been made specific to my use case, so it may need modifying to suit you
 ## High-level overview
 - [create_dir.py](https://github.com/knjk04/file-utils/blob/main/src/create_dir.py) is used to create folders where the name of the folder is a number.
     - E.g. if you pass in 1 as the start and 50 as the end, it will create folders called 1, 2, 3, ..., 50
-- [move_files.py](https://github.com/knjk04/file-utils/blob/main/src/move_files.py) uses create_dir.py to create new directories. It then moves files at the location the user wants to those new folders
+- [move_files.py](https://github.com/knjk04/file-utils/blob/main/src/move_files.py) uses create_dir.py to create new directories. It then moves files at the location the user wants to those new folders. It also bulk renames the files
 
 ![image](https://user-images.githubusercontent.com/11173328/132993638-77a83295-2f0f-4711-bf4b-9ffd39c6e110.png)
 
