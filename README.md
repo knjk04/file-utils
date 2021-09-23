@@ -1,5 +1,7 @@
 # File utils
 
+[![Python package](https://github.com/knjk04/file-utils/actions/workflows/build.yml/badge.svg)](https://github.com/knjk04/file-utils/actions/workflows/build.yml)
+
 Small Python scripts that I use for making my life easier when needing to work with lots of files in Azure Blob storage with the [Books API](https://github.com/Project-Books/books-api).
 
 This has been made specific to my use case, so it may need modifying to suit yours.
