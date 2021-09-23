@@ -2,7 +2,6 @@ import re
 
 # The rules of whether a file name is valid is based on https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
 def is_valid_windows_file_name(file_name):
-    # TODO add other checks
     return is_not_reserved_word(file_name) and not_contains_reserved_char(file_name) and \
            not_ends_in_space_or_period(file_name)
 
@@ -33,6 +32,5 @@ def is_not_reserved_word(word: str):
 
 
 def not_ends_in_space_or_period(word: str):
-    # TODO: fix. This matches when there's a space at the start and not a space or period at the end
-    regex = re.compile(r'(\S)*(\.)|( +)')
+    regex = re.compile(r'\.$|( )$')
     return regex.search(word) is None

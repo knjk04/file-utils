@@ -8,3 +8,5 @@ from src.validate_file_name import is_not_reserved_word
                                            ('LPT3'), ('LPT4'), ('LPT5'), ('LPT6'), ('LPT7'), ('LPT8'), ('LPT9')])
 def test_is_not_reserved_word(reserved_word):
     assert is_not_reserved_word(reserved_word) is False
+
+# TODO: test regexes
