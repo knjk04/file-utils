@@ -1,7 +1,8 @@
 import pytest
 from _pytest.monkeypatch import MonkeyPatch
 
-from src.create_dir import get_digit_from_user, get_parent_dir
+from src.create_dir import get_parent_dir, get_digit_from_user
+
 
 @pytest.fixture(scope="class")
 def set_up_monkeypatch(request):
