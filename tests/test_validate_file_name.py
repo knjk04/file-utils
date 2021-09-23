@@ -1,6 +1,6 @@
 import pytest
 
-from src.validate_file_name import is_not_reserved_word
+from src.validate_windows_file_name import is_not_reserved_word
 
 
 @pytest.mark.parametrize("reserved_word", [('CON'), ('PRN'), ('AUX'), ('NUL'), ('COM1'), ('COM2'), ('COM3'), ('COM4'),
