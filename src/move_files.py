@@ -38,11 +38,14 @@ def move_files(path_to_files: [str], destinations: [str], new_file_name: str):
 
 
 def ask_for_file_name():
-    while True:
+    for i in range(3):
         print('What do you want to to use for the new file names ?', sep='')
         file_name = input()
         if is_valid_windows_file_name(file_name):
             return file_name
+        print('Invalid file name. Try again.')
+    print('Error: you did not enter in a valid name after 3 attempts. Exiting...')
+    sys.exit()
 
 
 def main():
