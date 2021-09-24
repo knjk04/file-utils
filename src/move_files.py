@@ -7,6 +7,9 @@ from src.create_dir import create_numbered_dirs, get_parent_dir
 
 
 # TODO: ignore folders
+from src.validate_windows_file_name import is_valid_windows_file_name
+
+
 def get_files_in(dir: str):
     """Returns a list of absolute paths to files sorted alphabetically in the specified folder"""
     return [dir + '\\' + file for file in listdir(dir) if os.path.isfile(os.path.join(dir, file))]
@@ -34,6 +37,14 @@ def move_files(path_to_files: [str], destinations: [str], new_file_name: str):
         print(f'Moved {original_file_name}...')
 
 
+def ask_for_file_name():
+    while True:
+        print('What do you want to to use for the new file names ?', sep='')
+        file_name = input()
+        if is_valid_windows_file_name(file_name):
+            return file_name
+
+
 def main():
     parent_dir = get_parent_dir()
     files = get_files_in(parent_dir)
@@ -46,10 +57,7 @@ def main():
         print(f'Could not create new directories. Perhaps those directories already exist in {parent_dir}?')
         sys.exit()
 
-    print('What do you want to to use for the new file names ?', sep='')
-    file_name = input()
-
-    move_files(files, new_dirs, file_name)
+    move_files(files, new_dirs, ask_for_file_name())
 
 
 if __name__ == '__main__':
