@@ -1,17 +1,15 @@
 import os
 import sys
-from os import listdir # TODO: why do we need to import os twice?
+from os import listdir
 from pathlib import Path
 
 from src.create_dir import create_numbered_dirs, get_parent_dir
-
-
-# TODO: ignore folders
 from src.validate_windows_file_name import is_valid_windows_file_name
 
 
 def get_files_in(dir: str):
     """Returns a list of absolute paths to files sorted alphabetically in the specified folder"""
+    # TODO: ignore folders
     return [dir + '\\' + file for file in listdir(dir) if os.path.isfile(os.path.join(dir, file))]
 
 
