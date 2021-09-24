@@ -1,4 +1,5 @@
 import os
+import platform
 import sys
 from os import listdir
 from pathlib import Path
@@ -10,6 +11,7 @@ from src.validate_windows_file_name import is_valid_windows_file_name
 def get_files_in(dir: str):
     """Returns a list of absolute paths to files sorted alphabetically in the specified folder"""
     # TODO: ignore folders
+    # TODO: use OS independent path separator
     return [dir + '\\' + file for file in listdir(dir) if os.path.isfile(os.path.join(dir, file))]
 
 
@@ -36,8 +38,16 @@ def move_files(path_to_files: [str], destinations: [str], new_file_name: str):
 
 
 def ask_for_file_name():
+    question = 'What do you want to to use for the new file names ?'
+    if platform.system() == "Windows":
+        ask_for_file_name_on_windows(question)
+    print(question, sep='')
+    return input()
+
+
+def ask_for_file_name_on_windows(question: str):
     for i in range(3):
-        print('What do you want to to use for the new file names ?', sep='')
+        print(question, sep='')
         file_name = input()
         if is_valid_windows_file_name(file_name):
             return file_name
