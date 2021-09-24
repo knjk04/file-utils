@@ -3,6 +3,15 @@ import pytest
 from src.validate_windows_file_name import is_not_reserved_word, not_ends_in_space_or_period, \
     not_contains_reserved_char
 
+
+@pytest.mark.parametrize("reserved_word", ['CONA', 'PRNA', 'AUXA', 'NULA', 'COM1A', 'COM2A',
+                                           'COM3A', 'COM4A', 'COM5A', 'COM6A', 'COM7A', 'COM8A',
+                                           'COM9A', 'LPT1A', 'LPT2A', 'LPT3A', 'LPT4A', 'LPT5A',
+                                           'LPT6A', 'LPT7A', 'LPT8A', 'LPT9A'])
+def test_is_not_reserved_word_at_start(reserved_word):
+    assert is_not_reserved_word(reserved_word)
+
+
 @pytest.mark.parametrize("reserved_word", ['CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3',
                                            'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9', 'LPT1',
                                            'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8',
