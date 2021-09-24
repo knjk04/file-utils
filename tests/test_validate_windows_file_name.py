@@ -1,6 +1,6 @@
 import pytest
 
-from src.validate_windows_file_name import is_reserved_word, not_ends_in_space_or_period, \
+from src.validate_windows_file_name import is_reserved_word, ends_in_space_or_period, \
     contains_reserved_char
 
 
@@ -52,15 +52,15 @@ def test_contains_reserved_char_when_reserved_char_at_end(word):
 
 
 @pytest.mark.parametrize('word', [' file', '.file'])
-def test_not_ends_in_space_or_period_returns_true_if_at_start(word):
-    assert not_ends_in_space_or_period(word)
+def test_ends_in_space_or_period_if_at_start(word):
+    assert not ends_in_space_or_period(word)
 
 
 @pytest.mark.parametrize('word', ['Space in middle', 'Period . in middle'])
-def test_not_ends_in_space_or_period_returns_true_if_in_middle(word):
-    assert not_ends_in_space_or_period(word)
+def test_ends_in_space_or_period_if_in_middle(word):
+    assert not ends_in_space_or_period(word)
 
 
 @pytest.mark.parametrize('word', ['file ', 'file.'])
-def test_not_ends_in_space_or_period_returns_false(word):
-    assert not_ends_in_space_or_period(word) is False
+def test_ends_in_space_or_period(word):
+    assert ends_in_space_or_period(word)

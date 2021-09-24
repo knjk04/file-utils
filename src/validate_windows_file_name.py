@@ -10,8 +10,10 @@ def is_valid_windows_file_name(file_name):
     elif contains_reserved_char(file_name):
         raise Exception(f'You entered {file_name}, but you cannot use any of these characters: '
                         f'{get_reserved_char_list()}')
+    elif ends_in_space_or_period(file_name):
+        raise Exception(f'You entered {file_name}, but you cannot have a period or space at the end.')
 
-    return not_ends_in_space_or_period(file_name)
+    return True
 
 
 def get_reserved_char_list():
@@ -35,7 +37,6 @@ def contains_reserved_char(word: str):
     return re.match(r'\S*(<+|>+|:+|"+|/+|\\+|\|+|\?+|\*+)', word) is not None
 
 
-# This is its own function because we want to use it in multiple places while avoiding using a global
 def get_reserved_words():
     return {
         'CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3', 'COM4', 'COM5',
@@ -48,5 +49,5 @@ def is_reserved_word(word: str):
     return word in get_reserved_words()
 
 
-def not_ends_in_space_or_period(word: str):
-    return not (word.endswith(' ') or word.endswith('.'))
+def ends_in_space_or_period(word: str):
+    return word.endswith(' ') or word.endswith('.')

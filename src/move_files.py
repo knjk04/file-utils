@@ -29,8 +29,8 @@ def move_files(path_to_files: [str], destinations: [str], new_file_name: str):
     for index, source_path in enumerate(path_to_files):
         original_file_name = os.path.basename(source_path)
         file_extension = Path(original_file_name).suffix
-        # don't want to set this expression to new_file_name because it will overwrite the value and affect subsequent
-        # iterations of the loop
+        # don't want to set this expression to new_file_name because it will overwrite the value
+        # and affect subsequent iterations of the loop
         new_file_name2 = new_file_name + file_extension
         dest = os.path.join(destinations[index], new_file_name2)
         os.rename(source_path, dest)
@@ -57,7 +57,8 @@ def main():
 
     new_dirs = create_new_dirs(parent_dir, len(files))
     if not new_dirs:
-        print(f'Could not create new directories. Perhaps those directories already exist in {parent_dir}?')
+        print(f'Could not create new directories. Perhaps those directories already exist in '
+              f'{parent_dir}?')
         sys.exit()
 
     move_files(files, new_dirs, ask_for_file_name())
